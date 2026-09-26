@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal Portfolio of Doanh Nguyen Van - Java Backend Developer / Software Engineering Intern at FPT University Hanoi.">
+  <title>Doanh Nguyen Van | Java Backend Developer Portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header / Navbar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="logo">Doanh<span>NguyenVan</span></a>
+
+      <nav class="nav-menu" id="nav-menu">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Light/Dark Mode">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+          <i class="fa-solid fa-bars fa-xl"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. Home (Hero Section) -->
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <div class="hero-text">
+        <span class="badge"><i class="fa-solid fa-code"></i> Java Backend Developer / Intern</span>
+        <h1 class="hero-title">Hello, I'm<br><span style="color: var(--primary-color);">Doanh Nguyen Van</span></h1>
+        <p class="hero-tagline">Java Backend Developer | Software Engineering Intern</p>
+        <p class="hero-intro">Passionate about building robust Backend systems, optimizing database queries, and designing clean Object-Oriented Programming (OOP) architectures.</p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-folder-open" style="margin-right: 8px;"></i>View Projects</a>
+          <a href="#contact" class="btn btn-secondary"><i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i>Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <img src="profile.jpg" alt="Doanh Nguyen Van" class="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. About Me Section -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <p class="section-subtitle">Biography, Education & Professional Certificates</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3 class="about-heading"><i class="fa-solid fa-user-gear"></i> Profile Summary</h3>
+          <div class="about-text">
+            <p>I am <span class="about-highlight">Doanh Nguyen Van</span>, a 3rd-year Software Engineering student at <span class="about-highlight">FPT University Hanoi</span>.</p>
+            <p>I possess a solid foundation in <span class="about-highlight">Object-Oriented Programming (OOP)</span>, hands-on Java Web development experience with <span class="about-highlight">Spring Boot, JSP / Servlet</span>, and relational databases like <span class="about-highlight">SQL Server</span>.</p>
+            <p>With fast learning capability, strong problem-solving mindset, and high adaptability, I am eager to contribute value as a long-term dedicated Backend Engineer.</p>
+          </div>
+        </div>
+
+        <div class="about-sidebar">
+          <!-- Education Card -->
+          <div class="info-card">
+            <div class="card-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="card-content">
+              <h4>Education</h4>
+              <p class="school-name">FPT University Hanoi</p>
+              <p class="sub-text">Major: Software Engineering</p>
+              <p class="sub-text">Period: 09/2023 - Present</p>
+              <div class="gpa-badge">GPA: 3.0 / 4.0</div>
+            </div>
+          </div>
+
+          <!-- Certificates Card -->
+          <div class="info-card">
+            <div class="card-icon"><i class="fa-solid fa-certificate"></i></div>
+            <div class="card-content">
+              <h4>Coursera Certificates</h4>
+              <ul class="cert-list">
+                <li><i class="fa-solid fa-award"></i> User Experience Research and Design</li>
+                <li><i class="fa-solid fa-award"></i> Web Design for Everybody: Basics of Web Development & Coding</li>
+                <li><i class="fa-solid fa-award"></i> Academic Skills for University Success</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Skills Section -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Skills</h2>
+        <p class="section-subtitle">Technical Proficiency & Soft Competencies</p>
+      </div>
+      <div class="skills-grid">
+        
+        <!-- Group 1: Programming Languages -->
+        <div class="skill-category-card">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-code"></i></div>
+            <h3 class="category-title">Programming Languages</h3>
+          </div>
+          <div class="skills-list">
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">HTML</span>
+            <span class="skill-tag">CSS</span>
+            <span class="skill-tag">Thymeleaf</span>
+          </div>
+        </div>
+
+        <!-- Group 2: Frameworks & Tech -->
+        <div class="skill-category-card">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3 class="category-title">Frameworks & Technologies</h3>
+          </div>
+          <div class="skills-list">
+            <span class="skill-tag">Spring Boot</span>
+            <span class="skill-tag">Spring MVC</span>
+            <span class="skill-tag">JSP / Servlet</span>
+            <span class="skill-tag">RESTful API</span>
+          </div>
+        </div>
+
+        <!-- Group 3: Tools & Systems -->
+        <div class="skill-category-card">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h3 class="category-title">Tools & Databases</h3>
+          </div>
+          <div class="skills-list">
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">SQL Server</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Postman</span>
+            <span class="skill-tag">JUnit</span>
+            <span class="skill-tag">Selenium</span>
+            <span class="skill-tag">Maven</span>
+            <span class="skill-tag">IntelliJ IDEA</span>
+          </div>
+        </div>
+
+        <!-- Group 4: Soft Skills -->
+        <div class="skill-category-card skill-category-full">
+          <div class="category-header">
+            <div class="category-icon"><i class="fa-solid fa-users-gears"></i></div>
+            <h3 class="category-title">Soft Skills</h3>
+          </div>
+          <div class="skills-list">
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Presentation & Slide Design</span>
+            <span class="skill-tag">Technical Report Writing</span>
+            <span class="skill-tag">Agile & Adaptability</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Real-world Projects & Software Solutions</p>
+      </div>
+
+      <!-- Category Filter Buttons -->
+      <div class="filter-container">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Backend">Spring Boot</button>
+        <button class="filter-btn" data-filter="Web Java">JSP / Servlet</button>
+        <button class="filter-btn" data-filter="Social">Social & Leadership</button>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="projects-grid">
+        
+        <!-- Project Card 1 -->
+        <div class="project-card" data-category="Backend">
+          <div class="project-banner">
+            <i class="fa-solid fa-shop"></i>
+          </div>
+          <div class="project-body">
+            <span class="project-category">Spring Boot</span>
+            <h3 class="project-title">Supermarket Management System</h3>
+            <p class="project-desc">Engineered a comprehensive supermarket management system handling user authentication, authorization, sales, shift management, and revenue analytics using MVC architecture and SQL Server.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">Spring Boot</span>
+              <span class="tech-badge">OOP</span>
+              <span class="tech-badge">SQL Server</span>
+              <span class="tech-badge">MVC Architecture</span>
+            </div>
+            <div class="project-footer">
+              <button class="btn btn-secondary view-detail-btn" data-project="proj1">
+                <i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i>Details
+              </button>
+              <a href="https://github.com/DoanhNguyenVan/supermarket-management-system" target="_blank" rel="noopener noreferrer" class="btn btn-primary repo-btn">
+                <i class="fa-brands fa-github" style="margin-right: 6px;"></i>GitHub Repo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="project-card" data-category="Web Java">
+          <div class="project-banner">
+            <i class="fa-solid fa-cookie-bite"></i>
+          </div>
+          <div class="project-body">
+            <span class="project-category">JSP / Servlet</span>
+            <h3 class="project-title">Online Confectionery Store</h3>
+            <p class="project-desc">Developed an e-commerce web application for imported confectionery products with full product catalog management, shopping cart, order processing, and Servlet authentication.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Java</span>
+              <span class="tech-badge">JSP / Servlet</span>
+              <span class="tech-badge">SQL Server</span>
+              <span class="tech-badge">MVC Architecture</span>
+            </div>
+            <div class="project-footer">
+              <button class="btn btn-secondary view-detail-btn" data-project="proj2">
+                <i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i>Details
+              </button>
+              <a href="https://github.com/DoanhNguyenVan/java-servlet-ecommerce" target="_blank" rel="noopener noreferrer" class="btn btn-primary repo-btn">
+                <i class="fa-brands fa-github" style="margin-right: 6px;"></i>GitHub Repo
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div class="project-card" data-category="Social">
+          <div class="project-banner" style="background: linear-gradient(135deg, #0d9488 0%, #2563eb 100%);">
+            <i class="fa-solid fa-bullhorn"></i>
+          </div>
+          <div class="project-body">
+            <span class="project-category">Social & Leadership</span>
+            <h3 class="project-title">"Chenh Venh" Social Media Campaign</h3>
+            <p class="project-desc">Led an integrated Online & Offline campaign promoting Thach Xa bamboo dragonfly craft village culture through media video production and hands-on workshops.</p>
+            <div class="project-tech">
+              <span class="tech-badge">Project Management</span>
+              <span class="tech-badge">Leadership</span>
+              <span class="tech-badge">Video Content</span>
+              <span class="tech-badge">Event Organization</span>
+              <span class="tech-badge">Social Marketing</span>
+            </div>
+            <div class="project-footer">
+              <button class="btn btn-secondary view-detail-btn" data-project="proj3">
+                <i class="fa-solid fa-circle-info" style="margin-right: 6px;"></i>Details
+              </button>
+              <a href="https://www.facebook.com/share/18UdpM8dXD/" target="_blank" rel="noopener noreferrer" class="btn btn-primary repo-btn">
+                <i class="fa-brands fa-facebook" style="margin-right: 6px;"></i>Project Link
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Details Modal Popup -->
+  <div class="modal-overlay" id="project-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-title">Project Title</h3>
+        <button class="modal-close-btn" id="modal-close" aria-label="Close Pop-up">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-detail-group">
+          <div class="modal-detail-label">Category & Role</div>
+          <div class="modal-detail-value"><span id="modal-category">Category</span> | <span id="modal-role">Role</span></div>
+        </div>
+        <div class="modal-detail-group">
+          <div class="modal-detail-label" id="modal-tech-label">Technologies Used</div>
+          <div class="modal-detail-value" id="modal-tech">Java, Spring Boot...</div>
+        </div>
+        <div class="modal-detail-group">
+          <div class="modal-detail-label">Overview</div>
+          <p class="modal-detail-value" id="modal-description">Detailed description...</p>
+        </div>
+        <div class="modal-detail-group">
+          <div class="modal-detail-label">Key Features & Highlights</div>
+          <ul class="modal-highlights" id="modal-features">
+            <!-- Features list dynamically loaded -->
+          </ul>
+        </div>
+        <div class="modal-footer-actions" style="margin-top: 24px; text-align: right;">
+          <a id="modal-repo-link" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <i class="fa-brands fa-github" id="modal-repo-icon" style="margin-right: 8px;"></i><span id="modal-repo-text">GitHub Repo</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Get In Touch & Send A Message</p>
+      </div>
+      <div class="contact-grid">
+        
+        <div class="contact-info-card">
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-text">doanhnguyenvan47@gmail.com</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="info-label">Phone</div>
+              <div class="info-text">0869 163 118</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-brands fa-facebook"></i></div>
+            <div>
+              <div class="info-label">Facebook</div>
+              <div class="info-text"><a href="https://www.facebook.com/share/19aea3wfVZ/" target="_blank" style="color: var(--primary-color);">Nguyen Doanh</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div>
+              <div class="info-label">Instagram</div>
+              <div class="info-text"><a href="https://www.instagram.com/doanh682" target="_blank" style="color: var(--primary-color);">@doanh682</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-brands fa-github"></i></div>
+            <div>
+              <div class="info-label">GitHub</div>
+              <div class="info-text"><a href="https://github.com/DoanhNguyenVan" target="_blank" style="color: var(--primary-color);">github.com/DoanhNguyenVan</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="info-label">Location</div>
+              <div class="info-text">Hoa Lac, Hanoi, Vietnam</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form-card">
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" id="name" class="form-input" placeholder="e.g. John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" id="email" class="form-input" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="message" class="form-label">Message</label>
+              <textarea id="message" class="form-textarea" placeholder="Your message here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane" style="margin-right: 8px;"></i>Send Message
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 Doanh Nguyen Van. All rights reserved. Designed for Java Backend Developer / Intern Position.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
