@@ -1,14 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-  // Concept Theme Switching Logic (Black Concept vs Red Concept)
+  // Concept Theme Switching Logic (Bug vs Build Success Concept)
   const themeToggleBtn = document.getElementById('theme-toggle');
-  const storedTheme = localStorage.getItem('theme');
-  
-  if (storedTheme) {
-    document.documentElement.setAttribute('data-theme', storedTheme);
-  } else {
-    document.documentElement.setAttribute('data-theme', 'black');
+  const conceptIcon = document.getElementById('concept-icon');
+  const storedTheme = localStorage.getItem('theme') || 'black';
+
+  function updateConceptIcon(theme) {
+    if (!conceptIcon) return;
+    if (theme === 'red') {
+      // Red Theme: Compilation / Build Success Symbol
+      conceptIcon.className = 'fa-solid fa-circle-check';
+      if (themeToggleBtn) themeToggleBtn.title = 'BUILD SUCCESS (Concept Đỏ)';
+    } else {
+      // Black Theme: Code Bug Symbol
+      conceptIcon.className = 'fa-solid fa-bug';
+      if (themeToggleBtn) themeToggleBtn.title = 'DEBUG / BUG (Concept Đen & Xanh)';
+    }
   }
+  
+  document.documentElement.setAttribute('data-theme', storedTheme);
+  updateConceptIcon(storedTheme);
 
   if (themeToggleBtn) {
     themeToggleBtn.addEventListener('click', () => {
@@ -17,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       document.documentElement.setAttribute('data-theme', newTheme);
       localStorage.setItem('theme', newTheme);
+      updateConceptIcon(newTheme);
     });
   }
 
@@ -132,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
       height = canvas.height = canvas.parentElement.clientHeight;
     });
 
-    const codeSnippets = [
+    const normalCodeSnippets = [
       "SELECT * FROM",
       "ALTER TABLE",
       "public class",
@@ -153,12 +165,27 @@ document.addEventListener('DOMContentLoaded', () => {
       "@RestController",
       "@Autowired",
       "@Override",
-      "return new ResponseEntity()",
       "PRIMARY KEY (id)",
-      "FOREIGN KEY",
-      "HashSet<Integer>",
-      "LinkedList<Node>",
-      "Optional<User>"
+      "FOREIGN KEY"
+    ];
+
+    const errorCodeSnippets = [
+      "java.lang.NullPointerException",
+      "ArrayIndexOutOfBoundsException",
+      "Cannot find symbol: variable",
+      "java.lang.ClassNotFoundException",
+      "Syntax error: delete token",
+      "java.sql.SQLException: Connection refused",
+      "Compilation failed: 1 error",
+      "java.lang.StackOverflowError",
+      "Incompatible types: String to int",
+      "java.lang.IllegalArgumentException",
+      "Unresolved compilation problem",
+      "java.lang.ClassCastException",
+      "java.io.FileNotFoundException",
+      "HTTP 500 Internal Server Error",
+      "OutOfMemoryError: Java heap space",
+      "Exception in thread \"main\""
     ];
 
     class CodeParticle {
@@ -167,8 +194,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       reset(initial = false) {
-        this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
-        this.x = Math.random() * Math.max(10, width - 160);
+        const isRedTheme = document.documentElement.getAttribute('data-theme') === 'red';
+        const currentPool = isRedTheme ? errorCodeSnippets : normalCodeSnippets;
+
+        this.text = currentPool[Math.floor(Math.random() * currentPool.length)];
+        this.x = Math.random() * Math.max(10, width - 180);
         this.y = initial ? Math.random() * height : height + Math.random() * 40;
         this.speedY = -(Math.random() * 0.6 + 0.4);
         this.speedX = (Math.random() - 0.5) * 0.2;
@@ -387,6 +417,50 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape' && projectModal.classList.contains('active')) {
       closeModal();
     }
+  });
+
+  // LIGHTWEIGHT MOUSE CURSOR FLOATING CODE TRAIL EFFECT
+  const normalTrailSymbols = [
+    "{ }", "</>", "SELECT", "HashMap", "String", ";", "01",
+    "System", "[]", "=>", "&&", "!=", "SQL", "@Autowired", "val", "void", "OOP"
+  ];
+
+  const errorTrailSymbols = [
+    "NullPointer", "Error!", "Exception", "Fail", "HTTP 500", "SyntaxErr",
+    "Bug!", "StackOverflow", "ClassCast", "Crash!", "CompilationErr", "NPE"
+  ];
+
+  let lastSpawnTime = 0;
+  window.addEventListener('mousemove', (e) => {
+    const now = Date.now();
+    if (now - lastSpawnTime < 60) return;
+    lastSpawnTime = now;
+
+    const isRedTheme = document.documentElement.getAttribute('data-theme') === 'red';
+    const activeSymbols = isRedTheme ? errorTrailSymbols : normalTrailSymbols;
+
+    const particle = document.createElement('span');
+    particle.className = 'cursor-code-particle';
+    particle.textContent = activeSymbols[Math.floor(Math.random() * activeSymbols.length)];
+    
+    // Position at mouse coordinates
+    particle.style.left = `${e.clientX}px`;
+    particle.style.top = `${e.clientY}px`;
+    
+    // Slight random drift offsets
+    const offsetX = (Math.random() - 0.5) * 30;
+    const offsetY = - (Math.random() * 25 + 15);
+    particle.style.setProperty('--offset-x', `${offsetX}px`);
+    particle.style.setProperty('--offset-y', `${offsetY}px`);
+
+    document.body.appendChild(particle);
+
+    // Self-remove after animation completes
+    setTimeout(() => {
+      if (particle.parentNode) {
+        particle.parentNode.removeChild(particle);
+      }
+    }, 700);
   });
 
 });
