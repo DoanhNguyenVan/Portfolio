@@ -1,38 +1,41 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Theme Switching Logic (Light / Dark Mode)
+
+  // Concept Theme Switching Logic (Black Concept vs Red Concept)
   const themeToggleBtn = document.getElementById('theme-toggle');
   const storedTheme = localStorage.getItem('theme');
   
-  // Set default theme from localStorage or system preference
   if (storedTheme) {
     document.documentElement.setAttribute('data-theme', storedTheme);
-  } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.setAttribute('data-theme', 'black');
   }
 
-  themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-  });
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = (currentTheme === 'red') ? 'black' : 'red';
+      
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  }
 
   // Mobile Menu Toggle
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('nav-menu');
   const navLinks = document.querySelectorAll('.nav-link');
 
-  hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-  });
-
-  // Close mobile menu when link is clicked
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
     });
-  });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+  }
 
   // Active Navbar Link on Scroll
   const sections = document.querySelectorAll('section[id]');
@@ -58,7 +61,180 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', updateActiveNavLink);
 
-  // Project Filtering Logic
+  // DYNAMIC TYPING EFFECT FOR HERO TAGLINE
+  const typedTextSpan = document.getElementById('typed-text');
+  const textArray = [
+    "Software Engineering Student",
+    "Java Backend Developer",
+    "Spring Boot & RESTful API Engineer",
+    "OOP & Database Architecture Enthusiast"
+  ];
+  let textArrayIndex = 0;
+  let charIndex = 0;
+  let isTyping = true;
+
+  function typeEffect() {
+    if (!typedTextSpan) return;
+
+    const currentText = textArray[textArrayIndex];
+    if (isTyping) {
+      if (charIndex < currentText.length) {
+        typedTextSpan.textContent += currentText.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeEffect, 70);
+      } else {
+        isTyping = false;
+        setTimeout(typeEffect, 2000);
+      }
+    } else {
+      if (charIndex > 0) {
+        typedTextSpan.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(typeEffect, 35);
+      } else {
+        isTyping = true;
+        textArrayIndex = (textArrayIndex + 1) % textArray.length;
+        setTimeout(typeEffect, 400);
+      }
+    }
+  }
+
+  setTimeout(typeEffect, 500);
+
+  // SCROLL REVEAL ANIMATIONS WITH INTERSECTION OBSERVER
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.12,
+    rootMargin: "0px 0px -50px 0px"
+  });
+
+  revealElements.forEach(el => revealObserver.observe(el));
+
+  // DYNAMIC FLOATING CODE COMMANDS BACKGROUND CANVAS
+  const canvas = document.getElementById('hero-particles');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let codeParticles = [];
+    let width = canvas.width = canvas.parentElement.clientWidth;
+    let height = canvas.height = canvas.parentElement.clientHeight;
+
+    window.addEventListener('resize', () => {
+      if (!canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth;
+      height = canvas.height = canvas.parentElement.clientHeight;
+    });
+
+    const codeSnippets = [
+      "SELECT * FROM",
+      "ALTER TABLE",
+      "public class",
+      "HashMap<K, V>",
+      "INSERT INTO",
+      "UPDATE users SET",
+      "ArrayList<String>",
+      "CREATE TABLE",
+      "System.out.println()",
+      "WHERE status = 'ACTIVE'",
+      "INNER JOIN ON",
+      "GROUP BY id",
+      "ORDER BY created_at DESC",
+      "try { ... } catch",
+      "public static void main",
+      "ResponseEntity.ok()",
+      "@SpringBootApplication",
+      "@RestController",
+      "@Autowired",
+      "@Override",
+      "return new ResponseEntity()",
+      "PRIMARY KEY (id)",
+      "FOREIGN KEY",
+      "HashSet<Integer>",
+      "LinkedList<Node>",
+      "Optional<User>"
+    ];
+
+    class CodeParticle {
+      constructor() {
+        this.reset(true);
+      }
+
+      reset(initial = false) {
+        this.text = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+        this.x = Math.random() * Math.max(10, width - 160);
+        this.y = initial ? Math.random() * height : height + Math.random() * 40;
+        this.speedY = -(Math.random() * 0.6 + 0.4);
+        this.speedX = (Math.random() - 0.5) * 0.2;
+        this.fontSize = Math.floor(Math.random() * 4) + 12; // 12px - 15px
+        this.maxOpacity = Math.random() * 0.45 + 0.2; // 0.2 - 0.65
+        this.opacity = 0;
+        this.fadeIn = true;
+      }
+
+      update() {
+        this.y += this.speedY;
+        this.x += this.speedX;
+
+        // Fade in when entering from bottom
+        if (this.fadeIn) {
+          this.opacity += 0.008;
+          if (this.opacity >= this.maxOpacity) {
+            this.opacity = this.maxOpacity;
+            this.fadeIn = false;
+          }
+        }
+
+        // Fade out near top
+        if (this.y < height * 0.25) {
+          this.opacity -= 0.006;
+        }
+
+        if (this.y < -30 || this.opacity <= 0) {
+          this.reset(false);
+        }
+      }
+
+      draw() {
+        if (this.opacity <= 0) return;
+        const isRedTheme = document.documentElement.getAttribute('data-theme') === 'red';
+        const colorRGB = isRedTheme ? '255, 46, 77' : '29, 185, 84';
+
+        ctx.font = `${this.fontSize}px 'Fira Code', 'Consolas', monospace`;
+        ctx.fillStyle = `rgba(${colorRGB}, ${this.opacity})`;
+        ctx.shadowColor = `rgba(${colorRGB}, 0.45)`;
+        ctx.shadowBlur = 6;
+        ctx.fillText(this.text, this.x, this.y);
+        ctx.shadowBlur = 0; // reset blur
+      }
+    }
+
+    const codeCount = Math.min(Math.floor(width / 60), 22);
+    for (let i = 0; i < codeCount; i++) {
+      codeParticles.push(new CodeParticle());
+    }
+
+    function animateFloatingCode() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < codeParticles.length; i++) {
+        codeParticles[i].update();
+        codeParticles[i].draw();
+      }
+
+      requestAnimationFrame(animateFloatingCode);
+    }
+
+    animateFloatingCode();
+  }
+
+  // Project Category Filter Logic
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projectCards = document.querySelectorAll('.project-card');
 
@@ -73,6 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const category = card.getAttribute('data-category');
         if (filterValue === 'all' || category === filterValue) {
           card.style.display = 'flex';
+          setTimeout(() => card.classList.add('visible'), 50);
         } else {
           card.style.display = 'none';
         }
@@ -80,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Project Modal Data & Logic (English Version)
+  // Project Modal Data & Logic
   const projectData = {
     proj1: {
       title: "Supermarket Management System",
@@ -175,7 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const li = document.createElement('li');
           if (feat.includes('http')) {
             const parts = feat.split(': http');
-            li.innerHTML = `${parts[0]}: <a href="http${parts[1]}" target="_blank" style="color: var(--primary-color); font-weight: 600; text-decoration: underline;">http${parts[1]}</a>`;
+            li.innerHTML = `${parts[0]}: <a href="http${parts[1]}" target="_blank" style="color: var(--spotify-green); font-weight: 700; text-decoration: underline;">http${parts[1]}</a>`;
           } else {
             li.textContent = feat;
           }
@@ -206,20 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Handle ESC Key to Close Modal
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && projectModal.classList.contains('active')) {
       closeModal();
     }
   });
 
-  // Contact Form Feedback
-  const contactForm = document.getElementById('contact-form');
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      alert('Thank you for reaching out! Doanh Nguyen Van will get back to you as soon as possible.');
-      contactForm.reset();
-    });
-  }
 });
